@@ -86,10 +86,11 @@
                 </div>
 
                 <div class="links">
-
-                    <h2>Name : {{$nid->user->name}}</h2>
-                    <h2>Email : {{$nid->user->email}}</h2>
-
+                    <h1>User Id : {{$user->id}}</h1>
+                    <h1>User Name : {{$user->name}}</h1>
+                    @foreach($nids as $nid)
+                    <h2>Nid : {{$nid->user->name}}</h2>
+                    @endforeach
 
                 </div>
             </div>

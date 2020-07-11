@@ -9,9 +9,9 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
-  public function nid()
+  public function nids()
   {
-    return $this->hasOne(Nid::class);
+    return $this->hasMany(Nid::class);
   }
 
 

@@ -22,8 +22,9 @@ class HomeController extends Controller
 
     public function userInfo()
     {
-      $nid = Nid::where('user_id',Auth::user()->id)->first();
-      return view('welcome',compact('nid'));
+      $user = User::where('id',Auth::user()->id)->first();
+      $nids = Nid::where('user_id',Auth::user()->id)->get();
+      return view('welcome',compact('user','nids'));
     }
 
 }

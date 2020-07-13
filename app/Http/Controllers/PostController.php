@@ -36,15 +36,12 @@ class PostController extends Controller
        $data['url'] = $imageName1;
    }
 
+
        $post = new Post();
        $post->name = $request->name;
        $post->save();
-       $post->image()->create(
-         [
-           'url'=>$imageName1,
-         ]
-       );
-       return redirect()->route('post.index');
+       $post->image()->create(['url'=>$imageName1,]);
+       return redirect()->back();
 
     }
 

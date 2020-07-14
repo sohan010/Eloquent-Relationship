@@ -74,6 +74,9 @@ class PostController extends Controller
            $PostImage1 = Image::make($image1)->resize(1200,800)->save('jpg');
              Storage::disk('public')->put('post/'.$imageName1,$PostImage1);
              $data['url'] = $imageName1;
+       }else{
+
+          $imageName1 = $post->image->url;
        }
 
         // $data['name'] = $request->name;
@@ -96,5 +99,18 @@ class PostController extends Controller
         $post->delete();
         $post->image()->delete();
         return redirect()->back();
+    }
+
+    public function CreatePostComment($id)
+    {
+      $post = Post::find($id);
+      return view('pages.comment.post_comment',compact('post'));
+    }
+
+    public function PostCommentStore(Request $request)
+    {
+      $post = Post::find($request->post_id);
+      $post->comments()->create(['comment_body'=>$request->comment_body]);
+      return redirect()->route('post.index');
     }
 }
